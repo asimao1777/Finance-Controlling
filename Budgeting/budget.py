@@ -5,12 +5,11 @@
 #
 
 import openpyxl
-import pandas as pd
 import numpy as np
 import matplotlib
 from pandas import pivot_table
 import pandas as pd
-import numpy as np
+
 
 # Load the data
 file_path = r"C:\Users\asimao\OneDrive\Desktop\Base_Forecast.xlsx"
