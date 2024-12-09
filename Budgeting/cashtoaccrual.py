@@ -1,11 +1,9 @@
-# Description: the code takes an Excel workbook with the budget database, creates a new column and
-#              converts the cash value column into its accrual value, placing the value converted
-#              into the newly created column. The conversion is based on the days of payable,
-#              which the user shall define in the code.
+# Description:
 
 
 import openpyxl
 import pandas as pd
+import numpy as np
 
 option = str(input(f'Do you want to update days payable/receivable of any category? Yes or No? :  ')).upper()
 
