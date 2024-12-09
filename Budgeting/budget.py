@@ -13,7 +13,11 @@ import pandas as pd
 
 # Load the data
 file_path = r"C:\Users\asimao\OneDrive\Desktop\Base_Forecast.xlsx"
-df = pd.read_excel(file_path)
+workbook = pd.ExcelFile(file_path)
+# print(workbook.sheet_names)
+
+df = workbook.parse("DB")
+print(df.head())
 
 # Set the currency
 currency = "USD"
@@ -22,13 +26,14 @@ currency = "USD"
 df[currency] = df[currency].fillna(0)
 
 # Group by managing_area and short_description, and pivot the months
-pivot_table = df.groupby(['managing_area', 'short_description', 'month'])[currency].sum().unstack(fill_value=0)
+pivot_table = df.groupby(['cost_center', 'short_description', 'month'])[currency].sum().unstack(fill_value=0)
+print(pivot_table.head())
 
 # Rename columns to make them more readable
 pivot_table.columns = [f"Month_{col}" for col in pivot_table.columns]
 
 # Sort the index
-pivot_table = pivot_table.sort_index(level=['managing_area', 'short_description'])
+pivot_table = pivot_table.sort_index(level=['cost_center', 'short_description'])
 
 # Identify month columns
 month_columns = [col for col in pivot_table.columns if col.startswith('Month_')]
